@@ -211,11 +211,11 @@ html_document <- function(toc = FALSE,
   # use section divs
   args <- c(args, "--section-divs")
 
-  # table of contents
-  args <- c(args, pandoc_toc_args(toc, toc_depth))
-
   # toc_float
-  if (toc && !identical(toc_float, FALSE)) {
+  if (!identical(toc_float, FALSE)) {
+
+    # force toc on
+    toc <- TRUE
 
     # must have a theme
     if (is.null(theme))
@@ -250,6 +250,9 @@ html_document <- function(toc = FALSE,
     if (toc_float_options$smooth_scroll)
       args <- c(args, pandoc_variable_arg("toc_smooth_scroll", "1"))
   }
+
+  # table of contents
+  args <- c(args, pandoc_toc_args(toc, toc_depth))
 
   # template path and assets
   if (identical(template, "default"))
