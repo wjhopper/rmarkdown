@@ -158,7 +158,7 @@ html_document_base <- function(smart = TRUE,
         }
         img_src
       }
-      output_str <- process_images(output_str, image_relative)
+
     }
 
     writeLines(output_str, output_file, useBytes = TRUE)
